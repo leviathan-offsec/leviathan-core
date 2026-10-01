@@ -49,6 +49,24 @@ subfinder -d example.com -silent | httpx -silent | \
 leviathan score --inventory inventory.yaml --cache cache/
 ```
 
+## Tests
+
+```bash
+pip install -e . pytest
+pytest -q
+```
+
+| File | Covers |
+|---|---|
+| `tests/test_assets.py` | inventory parsing and the authorization gate |
+| `tests/test_match.py` | vendor/product matching, CPE and keyword paths |
+| `tests/test_score.py` | the score formula and its contract bounds |
+| `tests/test_report.py` | report rendering, including degraded-feed output |
+
+CI runs the suite on every push across the supported Python versions.
+
+---
+
 ## The authorization gate
 
 ```yaml
@@ -88,11 +106,11 @@ No attestation, no run. This is what makes it a defenders' tool.
 | tool | layer |
 |---|---|
 | surfacediff | what changed on my surface since last run (snapshot/diff) |
-| hostage | which of my subdomains are dangling or claimable |
+| HostageLVX | which of my subdomains are dangling or claimable |
 | leviathan-core | which CVEs actually hit my assets, with reasons |
 
 Recon feeds the surface, takeover scanning tests it, the exposure queue
-explains it. One coherent pipeline, three focused tools.
+explains it. One pipeline, four focused tools.
 
 ## License
 
