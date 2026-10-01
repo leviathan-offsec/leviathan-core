@@ -52,7 +52,8 @@ leviathan score --inventory inventory.yaml --cache cache/
 ## Tests
 
 ```bash
-pip install -e . pytest
+pip install -e .
+pip install pytest
 pytest -q
 ```
 
